@@ -15,10 +15,36 @@
 get_header(); 
 get_sidebar(); ?>
 
-
 	<main id="main">
-
 		<?php
+    	$args = [
+				'category' => 1,
+				'post_type' => 'post'
+			];
+    	$lists = get_posts( $args );
+			//var_dump($lists);
+			foreach ($lists as $l) {
+				echo '<div class="main-list" >';
+					echo '<h3>' . $l -> post_title . '</h3>';
+					echo '<h5 class="main-list-date">' . substr($l -> post_date, 0, 10) . '</h5>';
+					echo '<h4>' . wp_trim_words( $l->post_content, 16, ' ...' ) . '</h4>';
+				echo '</div>';
+			}
+			
+		?> 
+	</main>
+
+	<aside id="one">
+	</aside>
+
+<?php
+
+get_footer();
+
+
+
+
+		/*
 		if ( have_posts() ) :
 
 			if ( is_home() && ! is_front_page() ) : ?>
@@ -30,6 +56,7 @@ get_sidebar(); ?>
 			endif;
 
 			/* Start the Loop */
+			/*
 			while ( have_posts() ) : the_post();
 
 				/*
@@ -37,6 +64,7 @@ get_sidebar(); ?>
 				 * If you want to override this in a child theme, then include a file
 				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 				 */
+		/*
 				get_template_part( 'template-parts/content', get_post_format() );
 
 			endwhile;
@@ -47,9 +75,6 @@ get_sidebar(); ?>
 
 			get_template_part( 'template-parts/content', 'none' );
 
-		endif; ?>
-
-	</main>
-<?php
-
-get_footer();
+		endif; 
+		*/
+		?>

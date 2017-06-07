@@ -1,14 +1,14 @@
 /*
 Theme Name: NotePress
-Theme URI: http://underscores.me/
-Author: Underscores.me
-Author URI: http://underscores.me/
+Theme URI: https://github.com/byn9826/Notepress
+Author: Baozier
+Author URI: https://github.com/byn9826
 Description: Description
 Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: notepress
-Tags:
+Tags: Notebook, WordPress, notes, projects, tags, books
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -43,21 +43,30 @@ h1{
 	padding: 0;
 	margin: 0;
 }
-
 h2{
 	font-size: 16px;
 	font-weight: bold;
 	margin: 0;
 	padding: 0;
 }
-
 h3{
 	font-size: 14px;
 	font-weight: normal;
 	margin: 0;
 	padding: 0;
 }
-
+h4{
+	font-size: 12px;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+}
+h5{
+	font-size: 10px;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+}
 
 p{
 	font-size: 12px;
@@ -85,31 +94,39 @@ a{
 #header p{
 	display: inline-block;
 	vertical-align: middle;
-	margin-left: 3%;
+	margin-left: 2%;
 }
 
 /*aside*/
 #aside{
 	display: inline-block;
 	vertical-align: top;
-	width: 21%;
-	min-height: 650px;
+	width: 16%;
+	min-height: 600px;
 	background-color: #0e1f30;
 	padding: 20px 2%;
 }
 
 #aside-note{
 	display: block;
+}
+
+#aside-tag{
+	display: block;
+}
+
+.aside-title{
+	display: block;
 	margin-bottom: 10px;
 }
 
-#aside-note span{
+.aside-title span{
 	display: inline-block;
 	vertical-align: middle;
 	color: #a9acb2;
 }
 
-#aside-note h2{
+.aside-title h2{
 	vertical-align: middle;
 	display: inline-block;
 	color: #a9acb2;
@@ -120,10 +137,43 @@ a{
 	color: #a9acb2;
 	margin-bottom: 5px;
 	margin-left: 5%;
+	word-break: break-all;
 }
 
 /*main*/
 #main{
 	display: inline-block;
 	vertical-align: top;
+	width: 30%;
+	border-right: 1px solid #d2d5db;
+	min-height: 600px;
+}
+
+.main-list{
+	display: block;
+	width: 96%;
+	margin: 5px 1%;
+	padding: 5px 1%;
+	border-bottom: 1px solid #d2d5db;
+}
+.main-list h3{
+	display: block;
+	margin-bottom: 5px;
+}
+.main-list h4{
+	display: block;
+	color: #a4a4a8;
+	word-break: break-all;
+}
+
+.main-list-date{
+	display: inline-block;
+	color: #486ca8;
+}
+
+/*one*/
+#one{
+	display: inline-block;
+	vertical-align: top;
+	min-height: 600px;
 }
