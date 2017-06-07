@@ -1,0 +1,129 @@
+/*
+Theme Name: NotePress
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: notepress
+Tags:
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+NotePress is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
+*/
+
+/*general*/
+body{
+	margin: 0;
+	padding: 0;
+}
+
+#page{
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+#content{
+	display: block;
+	width: 100%;
+}
+
+h1{
+	font-size: 22px;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+}
+
+h2{
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+}
+
+h3{
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+}
+
+
+p{
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+/*Header*/
+#header{
+	display: block;
+	width: 96%;
+	padding: 5px 2%;
+	border-bottom: 2px solid #b8b9ba;
+}
+
+#header h1{
+	display: inline-block;
+	vertical-align: middle;
+}
+#header p{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 3%;
+}
+
+/*aside*/
+#aside{
+	display: inline-block;
+	vertical-align: top;
+	width: 21%;
+	min-height: 650px;
+	background-color: #0e1f30;
+	padding: 20px 2%;
+}
+
+#aside-note{
+	display: block;
+	margin-bottom: 10px;
+}
+
+#aside-note span{
+	display: inline-block;
+	vertical-align: middle;
+	color: #a9acb2;
+}
+
+#aside-note h2{
+	vertical-align: middle;
+	display: inline-block;
+	color: #a9acb2;
+}
+
+#aside h3{
+	display: block;
+	color: #a9acb2;
+	margin-bottom: 5px;
+	margin-left: 5%;
+}
+
+/*main*/
+#main{
+	display: inline-block;
+	vertical-align: top;
+}
