@@ -175,5 +175,59 @@ a{
 #one{
 	display: inline-block;
 	vertical-align: top;
+	width: 45%;
 	min-height: 600px;
+	padding: 10px 1%;
+}
+
+#one h1{
+	display: block;
+	margin-bottom: 5px;
+	color: #144593;
+}
+
+.one-book{
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 12px;
+	border-bottom: 1px solid #0a2e68;
+	padding-bottom: 2px;
+}
+.one-tag{
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 12px;
+	background-color: #afc1e0;
+	padding: 2px 5px;
+}
+#one-time{
+	display: inline-block;
+	vertical-align: middle;
+}
+#one-content{
+	font-size: 14px !important;
+	margin-top: 20px;
+	border-top: 2px solid #d2d5db;
+	padding-top: 10px;
+}
+#one-content *{
+	font-size: 14px !important;
+}
+
+/*footer*/
+#footer{
+	display: block;
+	width: 100%;
+	background-color: black;
+	color: white;
+}
+
+#footer a{
+	color: white;
+}
+
+#footer h5{
+	display: inline-block;
+	padding: 5px 2%;
+	font-weight: bold;
 }
