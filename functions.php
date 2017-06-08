@@ -7,6 +7,23 @@
  * @package NotePress
  */
 
+
+function notepress_add_scripts() {
+  wp_register_script(
+		'notepress_script', 
+		get_template_directory_uri() . '/js/notepress.js'
+	);
+	wp_register_script(
+		'jquery_script', 
+		get_template_directory_uri() . '/js/jquery-3.2.1.min.js'
+	);
+	wp_enqueue_script('jquery_script');
+  wp_enqueue_script('notepress_script');
+}
+add_action( 'wp_enqueue_scripts', 'notepress_add_scripts' );  
+
+
+
 if ( ! function_exists( 'notepress_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.

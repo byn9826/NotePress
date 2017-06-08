@@ -29,7 +29,7 @@
 	</div>
 	
 	<div class="aside-title">
-		<span>&#10137;</span>
+		<span>&#10136;</span>
 		<h2>Tags</h2>
 	</div>
 	
