@@ -102,7 +102,7 @@ a{
 	display: inline-block;
 	vertical-align: top;
 	width: 20%;
-	min-height: 600px;
+	height: 600px;
 	background-color: #0e1f30;
 	padding: 10px 0;
 }
@@ -156,7 +156,7 @@ a{
 	vertical-align: top;
 	width: 30%;
 	border-right: 1px solid #d2d5db;
-	min-height: 600px;
+	height: 600px;
 	padding: 10px 0.5%;
 }
 
@@ -194,8 +194,9 @@ a{
 	display: inline-block;
 	vertical-align: top;
 	width: 45%;
-	min-height: 600px;
-	padding: 10px 1%;
+	height: 560px;
+	padding: 20px 1%;
+	overflow-y: auto;
 }
 
 #one h1{
@@ -230,7 +231,24 @@ a{
 }
 #one-content *{
 	font-size: 14px !important;
+	max-width: 100% !important;
+	height: auto !important;
 }
+#one-content strong{
+	display: block !important;
+	margin: 10px 0 !important;
+}
+#one-content a{
+	text-decoration: underline !important;
+}
+#one-content span{
+	display: block;
+}
+#one-content span *{
+	display: block;
+	margin: 5px 0;
+}
+
 
 /*footer*/
 #footer{

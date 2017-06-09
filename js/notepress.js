@@ -4,7 +4,8 @@ $( document ).ready(function() {
   var defaultTag = null;
   
   $(".main-list").eq(0).addClass("main-active");
-  $(".aside-title").addClass("aside-active");
+  $("#aside-note").children(0).eq(0).addClass("aside-active");
+  $(".aside-title").eq(1).addClass("aside-active");
   
   //click on notebook or tags
   $(".aside-title").click(function() {
@@ -59,22 +60,6 @@ function buildTags(data) {
       }).appendTo("#one"); 
     });
   }
-}
-
-function buildTimes(data) {
-  
-  //build time
-  $("<h5/>", {
-    id: "one-time",
-    text: data.post_date.substring(0, 10)
-  }).appendTo("#one"); 
-  
-  //build content
-  $("<article/>", {
-    id: "one-content",
-    html: data.post_content
-  }).appendTo("#one");
-
 }
 
 
@@ -165,4 +150,25 @@ function replaceList () {
     }
   );
 
+  
+  function buildTimes(data) {
+  
+    //build time
+    $("<h5/>", {
+      id: "one-time",
+      text: data.post_date.substring(0, 10)
+    }).appendTo("#one"); 
+
+    //build content
+    var result = data.post_content.replace(/\[\/caption\]/gi, "</span>");
+    result = result .replace(/\[caption(.*)\]/gi, "<span>");
+    
+    $("<article/>", {
+      id: "one-content",
+      html: result
+    }).appendTo("#one");
+
+  }
+  
+  
 }

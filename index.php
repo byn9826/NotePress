@@ -18,7 +18,8 @@ get_sidebar(); ?>
 	<main id="main">
 		<?php
     	$args = [
-				'post_type' => 'post'
+				'post_type' => 'post',
+				'category' => 1
 			];
     	$lists = get_posts( $args );
 			foreach ($lists as $l) {
