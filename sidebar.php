@@ -36,12 +36,11 @@
 	<div id="aside-tag">
 		<?php 
 			$args = [
-				'hide_empty' => 0,
-				'order' => 'DESC'
+				'hide_empty' => 0
 			];
 			$tags = get_tags($args);
 			foreach ($tags as $t) {
-				echo '<h3>' . $t -> name . '</h3>';
+				echo '<h3 id="' . $t-> term_id . '">' . $t -> name . '</h3>';
 			}
 		?>
 	</div>

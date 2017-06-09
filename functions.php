@@ -26,24 +26,15 @@ add_action( 'wp_enqueue_scripts', 'notepress_add_scripts' );
 
 function readBook()
 {
-	
-		if ($_POST["nt_action"] == 'readAll') {
-			$args = [
-				'post_type' => 'post'
-			];
-    	echo json_encode(get_posts( $args ));
-		}
-	
-	
-	
+
 		if ($_POST["nt_action"] == 'readBook') {
 			$args = [
-				'category' => $_POST["readBook_id"],
+				'category' => $_POST["read_cat"],
+				'tag_id' => $_POST["read_tag"],
 				'post_type' => 'post'
 			];
     	echo json_encode(get_posts( $args ));
 		}
-	
 	
     if ($_POST["nt_action"] == 'readNote') {
 			$note = $_POST["readNote_id"];
@@ -56,7 +47,6 @@ function readBook()
 			$name = get_category($_POST["getCatName_id"]);
 			echo  json_encode($name);
 		}
-	
 	
     die;
 }

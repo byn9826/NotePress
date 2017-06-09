@@ -18,7 +18,6 @@ get_sidebar(); ?>
 	<main id="main">
 		<?php
     	$args = [
-				'category' => 1,
 				'post_type' => 'post'
 			];
     	$lists = get_posts( $args );
@@ -35,29 +34,31 @@ get_sidebar(); ?>
 
 	<aside id="one">
 		<?php
-		$args = [ 
-			'category' => 1,
-			'numberposts' => 1,
-			'post_type' => 'post'
-		];
-		$recent = wp_get_recent_posts($args);
+			if ( have_posts() ) {
+				$args = [ 
+					'category' => 1,
+					'numberposts' => 1,
+					'post_type' => 'post'
+				];
+				$recent = wp_get_recent_posts($args);
+
+				$categories = wp_get_post_categories($recent[0]['ID']);
+				$tags = wp_get_post_tags($recent[0]['ID']);
+				echo '<h1>' . $recent[0]['post_title'] . '</h1>';
+
+				foreach ($categories as $c) {
+					$note = get_category($c);
+					echo '<h5 class="one-book">' . $note -> name . '</h5>';
+				}
+
+				foreach ($tags as $t) {
+					echo '<h5 class="one-tag">' . $t -> name . '</h5>';
+				}
+
+				echo '<h5 id="one-time">' . substr($recent[0][post_date], 0, 10) . '</h5>';
+				echo '<article id="one-content">' . $recent[0][post_content] . '</article>';
+			}
 		
-		$categories = wp_get_post_categories($recent[0]['ID']);
-		$tags = wp_get_post_tags($recent[0]['ID']);
-		echo '<h1>' . $recent[0]['post_title'] . '</h1>';
-		
-		foreach ($categories as $c) {
-			$note = get_category($c);
-    	echo '<h5 class="one-book">' . $note -> name . '</h5>';
-		}
-		
-		foreach ($tags as $t) {
-    	echo '<h5 class="one-tag">' . $t -> name . '</h5>';
-		}
-		
-		echo '<h5 id="one-time">' . substr($recent[0][post_date], 0, 10) . '</h5>';
-		echo '<article id="one-content">' . $recent[0][post_content] . '</article>';
-			
 		?>
 		
 	</aside>
