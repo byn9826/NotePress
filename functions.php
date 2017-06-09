@@ -26,6 +26,15 @@ add_action( 'wp_enqueue_scripts', 'notepress_add_scripts' );
 
 function readBook()
 {
+		if ($_POST["nt_action"] == 'readBook') {
+			$args = [
+				'category' => $_POST["readBook_id"],
+				'post_type' => 'post'
+			];
+    	echo json_encode(get_posts( $args ));
+		}
+	
+	
     if ($_POST["nt_action"] == 'readNote') {
 			$note = $_POST["readNote_id"];
 			$cate = wp_get_post_categories($note);

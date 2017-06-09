@@ -23,7 +23,7 @@
 			];
 			$categories = get_categories($args);
 			foreach ($categories as $c) {
-				echo '<h3>' . $c -> name . '</h3>';
+				echo '<h3 id="' . $c-> cat_ID . '">' . $c -> name . '</h3>';
 			}
 		?>
 	</div>

@@ -1,6 +1,7 @@
 $( document ).ready(function() {
   
   $(".main-list").eq(0).addClass("main-active");
+  $("#aside-note").children(0).eq(0).addClass("aside-active");
   
   $(".aside-title").click(function() {
     var index = $(".aside-title").index(this);
@@ -17,60 +18,47 @@ $( document ).ready(function() {
     }
   });
   
-  $(".main-list").click(function() {
-    var list = JSON.parse($("#data-list").text());
-    let position = $(".main-list").index(this);
-    let replace = list[position];
-    $(".main-list").removeClass("main-active");
-    $(".main-list").eq(position).addClass("main-active");
+  //change notebook
+  $("#aside-note").children(0).click(function() {
+    $("#aside-note").children(0).removeClass("aside-active");
+    $("#aside-note").children(0).eq($("#aside-note").children(0).index(this)).addClass("aside-active");
+    
     var ajax_data = {
       action: "readBook",
-      nt_action: "readNote",
-      readNote_id: replace.ID
+      nt_action: "readBook",
+      readBook_id: this.id
     };
     $.post("/wp-admin/admin-ajax.php", ajax_data,
       function (data) {
-        //console.log(data);
-        data = JSON.parse(data);
-      
-        //replace title
+        $("#data-list").text(data)
+        
+        $("#main").empty();
         $("#one").empty();
-        $("<h1/>", {
-          text: replace.post_title
-        }).appendTo("#one");  
-      
-        //replace categories
-        if (data[0].length !== 0) {
-          data[0].map(function(c){
-            var ajax_inner = {
-              action: "readBook",
-              nt_action: "getCatName",
-              getCatName_id: c
-            }
-            $.post("/wp-admin/admin-ajax.php", ajax_inner,
-              function (cat) {
-                cat = JSON.parse(cat);
-                $("<h5/>", {
-                  class: "one-book",
-                  text: cat.name
-                }).appendTo("#one");  
-                //replace tags
-                buildTags(data[1]);
-                buildTimes(replace);
-              }
-            )
+        
+        var listData = JSON.parse(data);
+        listData.map(function(l) {
+          var $title = $("<h3>", {class: "main-list-title", text: l.post_title});
+          var $date = $("<h5>", {class: "main-list-date", text: l.post_date.substring(0, 10)});
+          var inner;
+          if (l.post_content.length > 100) {
+            inner = l.post_content.substring(0, 100) + " ...";
+          } else {
+            inner = l.post_content;
           }
-        )} else {
-          //replace tags
-          buildTags(data[1]);
-          buildTimes(replace);
-        }
-     
-      
+          var $content = $("<h4>", {class: "main-list-content", text: inner });
+          $("<div/>", {
+            class: "main-list",
+          }).appendTo("#main")
+          .append($title).append($date).append($content).click(replaceList);
+        });
+
       }
     );
-    
-  });
+
+  })
+  
+  
+  $(".main-list").click(replaceList);
                           
 });
 
@@ -98,5 +86,61 @@ function buildTimes(data) {
     id: "one-content",
     html: data.post_content
   }).appendTo("#one");
+
+}
+
+
+
+
+function replaceList () {
+  var list = JSON.parse($("#data-list").text());
+  var position = $(".main-list").index(this);
+  var replace = list[position];
+  $(".main-list").removeClass("main-active");
+  $(".main-list").eq(position).addClass("main-active");
+  var ajax_data = {
+    action: "readBook",
+    nt_action: "readNote",
+    readNote_id: replace.ID
+  };
+  $.post("/wp-admin/admin-ajax.php", ajax_data,
+    function (data) {
+      //console.log(data);
+      data = JSON.parse(data);
+
+      //replace title
+      $("#one").empty();
+      $("<h1/>", {
+        text: replace.post_title
+      }).appendTo("#one");  
+
+      //replace categories
+      if (data[0].length !== 0) {
+        data[0].map(function(c){
+          var ajax_inner = {
+            action: "readBook",
+            nt_action: "getCatName",
+            getCatName_id: c
+          }
+          $.post("/wp-admin/admin-ajax.php", ajax_inner,
+            function (cat) {
+              cat = JSON.parse(cat);
+              $("<h5/>", {
+                class: "one-book",
+                text: cat.name
+              }).appendTo("#one");  
+              //replace tags
+              buildTags(data[1]);
+              buildTimes(replace);
+            }
+          )
+        }
+      )} else {
+        //replace tags
+        buildTags(data[1]);
+        buildTimes(replace);
+      }
+    }
+  );
 
 }
