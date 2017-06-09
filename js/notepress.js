@@ -1,3 +1,19 @@
+function buildHeight() {
+  var first = $("#main").height();
+  var second = $("#aside").height();
+  var third = $("#one").height() + 40;
+  console.log(third);
+  var large = first;
+  if (large < second) {
+    large = second;
+  } else if (large < third) {
+    large = third;
+  }
+  $("#main").css('min-height', large);
+  $("#aside").css('min-height', large);
+  $("#one").css('min-height', large - 40);
+}
+
 $( document ).ready(function() {
   
   var defaultCat = 1;
@@ -6,6 +22,7 @@ $( document ).ready(function() {
   $(".main-list").eq(0).addClass("main-active");
   $("#aside-note").children(0).eq(0).addClass("aside-active");
   $(".aside-title").eq(1).addClass("aside-active");
+  buildHeight();
   
   //click on notebook or tags
   $(".aside-title").click(function() {
@@ -150,7 +167,6 @@ function replaceList () {
     }
   );
 
-  
   function buildTimes(data) {
   
     //build time
@@ -162,13 +178,15 @@ function replaceList () {
     //build content
     var result = data.post_content.replace(/\[\/caption\]/gi, "</span>");
     result = result .replace(/\[caption(.*)\]/gi, "<span>");
-    
     $("<article/>", {
       id: "one-content",
       html: result
     }).appendTo("#one");
 
+    buildHeight();
+    
   }
+  
   
   
 }
