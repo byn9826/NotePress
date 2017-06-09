@@ -22,12 +22,11 @@ get_sidebar(); ?>
 				'post_type' => 'post'
 			];
     	$lists = get_posts( $args );
-			//var_dump($lists);
 			foreach ($lists as $l) {
-				echo '<div class="main-list" >';
-					echo '<h3>' . $l -> post_title . '</h3>';
+				echo '<div class="main-list">';
+					echo '<h3 class="main-list-title">' . $l -> post_title . '</h3>';
 					echo '<h5 class="main-list-date">' . substr($l -> post_date, 0, 10) . '</h5>';
-					echo '<h4>' . wp_trim_words( $l-> post_content, 16, ' ...' ) . '</h4>';
+					echo '<h4 class="main-list-content">' . wp_trim_words( $l-> post_content, 16, ' ...' ) . '</h4>';
 				echo '</div>';
 			}
 			
@@ -45,7 +44,6 @@ get_sidebar(); ?>
 		
 		$categories = wp_get_post_categories($recent[0]['ID']);
 		$tags = wp_get_post_tags($recent[0]['ID']);
-		//var_dump($recent);
 		echo '<h1>' . $recent[0]['post_title'] . '</h1>';
 		
 		foreach ($categories as $c) {
@@ -65,5 +63,7 @@ get_sidebar(); ?>
 	</aside>
 
 <?php
+	
+	get_footer();
 
-get_footer();
+	echo '<script id="data-list" type="application/json">' . json_encode($lists) .'</script>';

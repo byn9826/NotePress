@@ -147,20 +147,24 @@ a{
 	width: 30%;
 	border-right: 1px solid #d2d5db;
 	min-height: 600px;
+	padding: 10px 0.5%;
 }
 
 .main-list{
 	display: block;
-	width: 96%;
-	margin: 5px 1%;
-	padding: 5px 1%;
+	width: 98%;
+	padding: 10px 1%;
 	border-bottom: 1px solid #d2d5db;
+	cursor: pointer;
 }
-.main-list h3{
+.main-active{
+	background-color: #dee5ef;
+}
+.main-list-title{
 	display: block;
 	margin-bottom: 5px;
 }
-.main-list h4{
+.main-list-content{
 	display: block;
 	color: #a4a4a8;
 	word-break: break-all;
