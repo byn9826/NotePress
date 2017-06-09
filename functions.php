@@ -24,6 +24,29 @@ add_action( 'wp_enqueue_scripts', 'notepress_add_scripts' );
 
 
 
+function readBook()
+{
+    if ($_POST["nt_action"] == 'readNote') {
+			$note = $_POST["readNote_id"];
+			$cate = wp_get_post_categories($note);
+			$tag = wp_get_post_tags($note);
+      echo json_encode([$cate, $tag]);
+    }
+		
+		if ($_POST["nt_action"] == 'getCatName') {
+			$name = get_category($_POST["getCatName_id"]);
+			echo  json_encode($name);
+		}
+	
+	
+    die;
+}
+add_action('wp_ajax_nopriv_readBook', 'readBook');
+add_action('wp_ajax_readBook', 'readBook');
+
+
+
+
 if ( ! function_exists( 'notepress_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
