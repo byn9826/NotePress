@@ -42,7 +42,7 @@ get_sidebar(); ?>
 					'post_type' => 'post'
 				];
 				$recent = wp_get_recent_posts($args);
-
+				//var_dump($recent[0]);
 				$categories = wp_get_post_categories($recent[0]['ID']);
 				$tags = wp_get_post_tags($recent[0]['ID']);
 				echo '<h1>' . $recent[0]['post_title'] . '</h1>';
@@ -57,6 +57,7 @@ get_sidebar(); ?>
 				}
 
 				echo '<h5 id="one-time">' . substr($recent[0][post_date], 0, 10) . '</h5>';
+				echo '<a id="one-open" href="'. $recent[0][guid] .'">' . OPEN . '</a>';
 				echo '<article id="one-content">' . $recent[0][post_content] . '</article>';
 			}
 		

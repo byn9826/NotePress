@@ -1,19 +1,3 @@
-function buildHeight() {
-  var first = $("#main").height();
-  var second = $("#aside").height();
-  var third = $("#one").height() + 40;
-  console.log(third);
-  var large = first;
-  if (large < second) {
-    large = second;
-  } else if (large < third) {
-    large = third;
-  }
-  $("#main").css('min-height', large);
-  $("#aside").css('min-height', large);
-  $("#one").css('min-height', large - 40);
-}
-
 $( document ).ready(function() {
   
   var defaultCat = 1;
@@ -97,13 +81,11 @@ function replaceBook (cat, tag) {
       listData.map(function(l) {
         var $title = $("<h3>", {class: "main-list-title", text: l.post_title});
         var $date = $("<h5>", {class: "main-list-date", text: l.post_date.substring(0, 10)});
-        var inner;
-        if (l.post_content.length > 100) {
-          inner = l.post_content.substring(0, 100) + " ...";
-        } else {
-          inner = l.post_content;
+        var inner = $(l.post_content).text().trim();
+        if (inner.length > 100) {
+          inner = inner.substring(0, 100) + " ...";
         }
-        inner = inner.trim();
+        inner = processContent(inner);
         var $content = $("<h4>", {class: "main-list-content", html: inner });
         $("<div/>", {
           class: "main-list",
@@ -129,7 +111,6 @@ function replaceList () {
   };
   $.post("/wp-admin/admin-ajax.php", ajax_data,
     function (data) {
-      //console.log(data);
       data = JSON.parse(data);
 
       //replace title
@@ -174,19 +155,46 @@ function replaceList () {
       id: "one-time",
       text: data.post_date.substring(0, 10)
     }).appendTo("#one"); 
+    
+    //build open
+    $("<a/>", {
+      id: "one-open",
+      href: data.guid,
+      text: "OPEN"
+    }).appendTo("#one"); 
 
     //build content
-    var result = data.post_content.replace(/\[\/caption\]/gi, "</span>");
-    result = result .replace(/\[caption(.*)\]/gi, "<span>");
+    var result = processContent(data.post_content);
     $("<article/>", {
       id: "one-content",
       html: result
     }).appendTo("#one");
 
-    buildHeight();
+    setTimeout(buildHeight, 500);
     
   }
   
-  
-  
+}
+
+function processContent(content) {
+  var result = content.replace(/\[\/caption\]/gi, "</span>");
+  return result .replace(/\[caption(.*)\]/gi, "<span>");
+}
+
+function buildHeight() {
+  $("#main").css('min-height', 600);
+  $("#aside").css('min-height', 600);
+  $("#one").css('min-height', 560);
+  var first = $("#main").height();
+  var second = $("#aside").height();
+  var third = $("#one").height() + 40;
+  var large = first;
+  if (large < second) {
+    large = second;
+  } else if (large < third) {
+    large = third;
+  }
+  $("#main").css('min-height', large);
+  $("#aside").css('min-height', large);
+  $("#one").css('min-height', large - 40);
 }
