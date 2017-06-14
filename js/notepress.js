@@ -1,6 +1,6 @@
 $( document ).ready(function() {
   
-  var defaultCat = 1;
+  var defaultCat = null;
   var defaultTag = null;
   
   $(".main-list").eq(0).addClass("main-active");
@@ -77,7 +77,6 @@ function replaceBook (cat, tag) {
       $("#data-list").text(data)
       $("#main").empty();
       $("#one").empty();
-
       var listData = JSON.parse(data);
       listData.map(function(l) {
         var $title = $("<h3>", {class: "main-list-title", text: l.post_title});
@@ -179,7 +178,8 @@ function replaceList () {
 
 function processContent(content) {
   var result = content.replace(/\[\/caption\]/gi, "</span>");
-  return result .replace(/\[caption(.*)\]/gi, "<span>");
+  result = result .replace(/\[caption(.*)\]/gi, "<span>");
+  return result;
 }
 
 function buildHeight() {

@@ -66,5 +66,8 @@ get_sidebar(); ?>
 <?php
 	
 	get_footer();
+	foreach($lists as $l) {
+		$l->post_content = wpautop( $l->post_content );
+	}
 
 	echo '<script id="data-list" type="application/json">' . json_encode($lists) .'</script>';

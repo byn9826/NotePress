@@ -33,7 +33,11 @@ function readBook()
 				'tag_id' => $_POST["read_tag"],
 				'post_type' => 'post'
 			];
-    	echo json_encode(get_posts( $args ));
+			$content = get_posts( $args );
+			foreach ($content as $c) {
+				$c->post_content = wpautop( $c->post_content );
+			}
+    	echo json_encode($content);
 		}
 	
     if ($_POST["nt_action"] == 'readNote') {
