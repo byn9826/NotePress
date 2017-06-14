@@ -18,8 +18,7 @@
 	<div id="aside-note">
 		<?php 
 			$args = [
-				'hide_empty' => 0,
-				'order' => 'DESC'
+				'hide_empty' => 0
 			];
 			$categories = get_categories($args);
 			//var_dump($categories);
