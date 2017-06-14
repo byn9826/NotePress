@@ -82,12 +82,12 @@ function replaceBook (cat, tag) {
       listData.map(function(l) {
         var $title = $("<h3>", {class: "main-list-title", text: l.post_title});
         var $date = $("<h5>", {class: "main-list-date", text: l.post_date.substring(0, 10)});
-        var inner = $(l.post_content).text().trim();
+        var $content = $("<h4>", {class: "main-list-content", html:  $.parseHTML(processContent(l.post_content)) });
+        var inner = $content.text();
         if (inner.length > 100) {
           inner = inner.substring(0, 100) + " ...";
         }
-        inner = processContent(inner);
-        var $content = $("<h4>", {class: "main-list-content", html: inner });
+        $content.html(inner);
         $("<div/>", {
           class: "main-list",
         }).appendTo("#main")
