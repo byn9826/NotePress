@@ -4,8 +4,9 @@ $( document ).ready(function() {
   var defaultTag = null;
   
   $(".main-list").eq(0).addClass("main-active");
-  $("#aside-note").children(0).eq(0).addClass("aside-active");
+  $(".aside-title").eq(0).addClass("aside-active");
   $(".aside-title").eq(1).addClass("aside-active");
+  $("#one-content").html(processContent($("#one-content").html()));
   buildHeight();
   
   //click on notebook or tags

@@ -22,6 +22,7 @@
 				'order' => 'DESC'
 			];
 			$categories = get_categories($args);
+			//var_dump($categories);
 			foreach ($categories as $c) {
 				echo '<h3 id="' . $c-> cat_ID . '">' . $c -> name . '</h3>';
 			}

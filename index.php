@@ -18,8 +18,7 @@ get_sidebar(); ?>
 	<main id="main">
 		<?php
     	$args = [
-				'post_type' => 'post',
-				'category' => 1
+				'post_type' => 'post'
 			];
     	$lists = get_posts( $args );
 			foreach ($lists as $l) {
@@ -36,8 +35,7 @@ get_sidebar(); ?>
 	<aside id="one">
 		<?php
 			if ( have_posts() ) {
-				$args = [ 
-					'category' => 1,
+				$args = [
 					'numberposts' => 1,
 					'post_type' => 'post'
 				];
@@ -58,7 +56,7 @@ get_sidebar(); ?>
 
 				echo '<h5 id="one-time">' . substr($recent[0][post_date], 0, 10) . '</h5>';
 				echo '<a id="one-open" href="'. $recent[0][guid] .'">' . OPEN . '</a>';
-				echo '<article id="one-content">' . $recent[0][post_content] . '</article>';
+				echo '<article id="one-content">' . wpautop($recent[0][post_content]) . '</article>';
 			}
 		
 		?>
