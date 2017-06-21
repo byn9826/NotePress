@@ -7,8 +7,8 @@
  * @package NotePress
  */
 ?>
-
-<aside id="aside">
+<section id="wrapper">
+	<aside id="aside">
 	
 	<div class="aside-title">
 		<span>&#10136;</span>

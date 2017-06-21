@@ -31,7 +31,7 @@ get_sidebar(); ?>
 			
 		?> 
 	</main>
-
+</section>
 	<aside id="one">
 		<?php
 			if ( have_posts() ) {

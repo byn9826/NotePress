@@ -183,19 +183,34 @@ function processContent(content) {
 }
 
 function buildHeight() {
-  $("#main").css('min-height', 600);
-  $("#aside").css('min-height', 600);
-  $("#one").css('min-height', 560);
-  var first = $("#main").height();
-  var second = $("#aside").height();
-  var third = $("#one").height() + 40;
-  var large = first;
-  if (large < second) {
-    large = second;
-  } else if (large < third) {
-    large = third;
+  var first, second, third;
+  if (window.innerWidth > 782) {
+    $("#main").css('min-height', 600);
+    $("#aside").css('min-height', 600);
+    $("#one").css('min-height', 560);
+    first = $("#main").height();
+    second = $("#aside").height();
+    third = $("#one").height() + 40;
+    large = first;
+    if (large < second) {
+      large = second;
+    } else if (large < third) {
+      large = third;
+    }
+    $("#main").css('min-height', large);
+    $("#aside").css('min-height', large);
+    $("#one").css('min-height', large - 40);
+  } else {
+    $("#main").css('min-height', 0);
+    $("#aside").css('min-height', 0);
+    $("#one").css('min-height', 0);
+    if (window.innerWidth > 600) {
+      first = $("#main").height();
+      second = $("#aside").height();
+      third = $("#one").height() + 40;
+      if ((first + second) < third) {
+        $("#main").css('height', third - second);
+      }
+    }
   }
-  $("#main").css('min-height', large);
-  $("#aside").css('min-height', large);
-  $("#one").css('min-height', large - 40);
 }
