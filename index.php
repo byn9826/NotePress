@@ -15,6 +15,7 @@
 get_header(); 
 get_sidebar(); ?>
 
+<body>
 	<main id="main">
 		<?php
     	$args = [
