@@ -1,7 +1,6 @@
 NotePress
 -
-NotePress is a WordPress Theme which aims to turn WordPress into your public notebooks.   
-This theme is not for a beautiful blog, just for fun.   
+NotePress is a WordPress Theme which aims to turn your WordPress into a online notebook looks like Evernote for fun.  
 [Demo](http://notepress.epizy.com/)    
    
 Stack: PHP, jQuery
