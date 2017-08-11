@@ -13,7 +13,7 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
-/*general layout*/
+/*general settings*/
 body, h1, h2, h3, h4, h5, h6, p{
 	margin: 0;
 	padding: 0;
@@ -43,10 +43,17 @@ a{
 	color: inherit;
 }
 
+/*main layout*/
 #aside{
 	position: absolute;
 	width: 72px;
 	height: 100%;
 	background-color: #f8f8f8;
 	border-right: 1px solid #ececec;
+}
+#main{
+	position: absolute;
+	width: 350px;
+	left: 73px;
+	height: 100%;
 }

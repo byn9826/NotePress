@@ -1,26 +1,13 @@
 <?php
-/**
- * The template for displaying the footer
- *
- * Contains the closing of the #content div and all content after.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package NotePress
- */
-
+    //get first 20 notes info to display in the list
+	$args = [
+		'post_type' => 'post', 
+		'numberposts' => 20
+	];
+	$list = cleanListInfo( get_posts( $args ) );
 ?>
-
-	</div>
-
-	<footer id="footer">
-		<a href="https://github.com/byn9826/Notepress" target="_blank"><h5>
-			WordPress Theme: NotePress
-		</h5></a>
-	</footer>
-</div>
-
+<script>
+    //past data from php to js
+    var list = <?= json_encode( $list ) ?>;
+</script>
 <?php wp_footer(); ?>
-
-</body>
-</html>

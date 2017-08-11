@@ -1,18 +1,28 @@
 <?php
 /*
  * NotePress backend functions and definitions
-*/
+ */
 
-//load js and css dependency
-function notepress_default_scripts() {
-	wp_register_script( 'VueJs', get_template_directory_uri() . '/js/vue.js' );
-  wp_register_script( 'NotepressJs', get_template_directory_uri() . '/js/notepress.js');
-  wp_enqueue_script( 'VueJs' );
-	wp_enqueue_script( 'NotepressJs' );
+//load js and css dependency for initial main page
+function notepress_init_scripts() {
+	if (!is_admin() ) {  
+		wp_enqueue_style( 'notepress-style', get_stylesheet_uri() );
+	    wp_register_script('Vue', get_template_directory_uri() . '/js/vue.js', [], '', true );  
+	    wp_enqueue_script('Vue');  
+	    wp_register_script('Notepress', get_template_directory_uri() . '/js/notepress.js', [ 'Vue' ], '', true );  
+	    wp_enqueue_script('Notepress');  
+    }  
 }
-add_action( 'wp_enqueue_scripts', 'notepress_default_scripts' );  
-wp_enqueue_style( 'notepress-style', get_stylesheet_uri() );
+add_action( 'wp_enqueue_scripts', 'notepress_init_scripts' );  
 
+//change info formats for list of notes
+function cleanListInfo( $list ) {
+	foreach ( $list as $key => $post ) {
+		$post->post_date = substr( $post->post_date, 0, 10 );
+		$post->post_content = wp_trim_words( $post->post_content, 16, ' ...' );
+	}
+	return $list;
+}
 
 
 function readBook()
