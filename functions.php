@@ -3,17 +3,30 @@
  * NotePress backend functions and definitions
  */
 
-//load js and css dependency for initial main page
-function notepress_init_scripts() {
-	if (!is_admin() ) {  
-		wp_enqueue_style( 'notepress-style', get_stylesheet_uri() );
-	    wp_register_script('Vue', get_template_directory_uri() . '/js/vue.js', [], '', true );  
-	    wp_enqueue_script('Vue');  
-	    wp_register_script('Notepress', get_template_directory_uri() . '/js/notepress.js', [ 'Vue' ], '', true );  
-	    wp_enqueue_script('Notepress');  
+//load js and css dependencies for initial main page
+function notepress_dependencies() {
+	if ( !is_admin() ) {  
+		wp_enqueue_style( 'notepressCss', get_stylesheet_uri() );
+		if ( is_user_logged_in() ) {
+			//fix layout height for logged in users
+	    	wp_enqueue_style( 'userFixCss', get_template_directory_uri() . '/css/user-fix.css' );
+	    }
+	    wp_register_script( 'VueJs', get_template_directory_uri() . '/js/vue.js', [], '', true );  
+	    wp_enqueue_script( 'VueJs' );  
+	    wp_register_script( 'HelperJs', get_template_directory_uri() . '/js/helper.js', [ 'VueJs' ], '', true );  
+	    wp_enqueue_script( 'HelperJs' );
+	    wp_register_script( 
+	    	'NotepressJs', get_template_directory_uri() . '/js/notepress.js', [ 'VueJs', 'HelperJs' ], '', true 
+	    );  
+	    wp_enqueue_script( 'NotepressJs' );
     }  
 }
-add_action( 'wp_enqueue_scripts', 'notepress_init_scripts' );  
+add_action( 'wp_enqueue_scripts', 'notepress_dependencies' );  
+
+
+
+
+
 
 //change info formats for list of notes
 function cleanListInfo( $list ) {
@@ -23,6 +36,11 @@ function cleanListInfo( $list ) {
 	}
 	return $list;
 }
+
+
+
+
+
 
 
 function readBook()

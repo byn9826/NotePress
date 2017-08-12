@@ -4,10 +4,10 @@
 		'post_type' => 'post', 
 		'numberposts' => 20
 	];
-	$list = cleanListInfo( get_posts( $args ) );
+	$list = get_posts( $args );
 ?>
-<script>
+<script type="text/javascript">
     //past data from php to js
-    var list = <?= json_encode( $list ) ?>;
+    var listData = <?= json_encode( $list ) ?>;
 </script>
 <?php wp_footer(); ?>

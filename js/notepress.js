@@ -1,10 +1,9 @@
-/*global Vue list*/
+/*global Vue listData*/
 
 new Vue({
-    el: '#main',
+    el: '#app',
     data: {
-        initList: list
+        listData: listData
     }
 });
-
-console.log(list);
+console.log(listData[0].post_modified);
