@@ -90,8 +90,25 @@ html, body, #app{
 	padding: 12px 24px;
 	padding-bottom: 0;
 	height: 108px;
+	white-space: nowrap;
 }
-.list-note>:first-child{
+.list-note-block{
+	display: block;
+}
+.list-note-inline{
+	display: inline-block;
+	vertical-align: middle;
+	width: 66%;
+}
+.list-note img{
+	display: inline-block;
+	vertical-align: middle;
+	width: 34%;
+	max-width: 96px;
+	max-height: 96px;
+	background-size: cover;
+}
+.list-note-wrap>:first-child{
 	font-family: times, serif;
     font-size: 18px;
     font-weight: 400;
@@ -106,7 +123,7 @@ html, body, #app{
     word-wrap: break-word;
     display: block;
 }
-.list-note>:nth-child(2){
+.list-note-wrap>:nth-child(2){
 	font-size: 11px;
 	height: 13px;
 	line-height: 13px;
@@ -116,9 +133,16 @@ html, body, #app{
     color: #878787;
     display: block;
 }
-.list-note>:nth-child(3){
+.list-note-wrap>:nth-child(3){
 	height: 47px;
 	display: block;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    color: #878787;
 }
 .list-note>:last-child{
 	display: block;

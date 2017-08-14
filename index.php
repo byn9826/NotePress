@@ -11,13 +11,18 @@
 				</div>
 				<section id="list-view">
 					<div v-for="note in listData" class="list-note">
-						<div>
-							{{ note.post_title }}
+						<div v-bind:class="{'list-note-block':note.post_image===0, 'list-note-inline':note.post_image!==0, 'list-note-wrap': true }">
+							<div>
+								{{ note.post_title }}
+							</div>
+							<span>
+								{{ dateChecker( note.post_modified ) }}
+							</span>
+							<div>
+								{{ note.post_content }}
+							</div>
 						</div>
-						<span>
-							{{ dateChecker( note.post_modified ) }}
-						</span>
-						<div></div>
+						<img v-show="note.post_image!==0" v-bind:src="note.post_image" />
 						<span></span>
 					</div>
 				</section>
